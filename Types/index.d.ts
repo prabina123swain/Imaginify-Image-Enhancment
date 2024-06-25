@@ -1,18 +1,22 @@
 /* eslint-disable no-unused-vars */
 
 // ====== USER PARAMS
+
+const validFirstName = firstName !== null ? firstName : '';
+const validLastName = lastName !== null ? lastName : '';
+
 declare type CreateUserParams = {
     clerkId: string;
     email: string;
     username: string;
-    firstName: string;
-    lastName: string;
+    firstName: validFirstName;
+    lastName: validLastName;
     photo: string;
   };
   
   declare type UpdateUserParams = {
-    firstName: string;
-    lastName: string;
+    firstName: validFirstName;
+    lastName: validLastName;
     username: string;
     photo: string;
   };
