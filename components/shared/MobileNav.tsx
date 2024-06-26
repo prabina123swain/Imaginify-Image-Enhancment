@@ -7,10 +7,9 @@ import {
   } from "@/components/ui/sheet"
 import Link from 'next/link'
 import Image from 'next/image'
-import { SignOutButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignOutButton, SignedIn , UserButton } from '@clerk/nextjs'
 import { navLinks } from '@/constants'
 import { usePathname } from 'next/navigation'
-import { Button } from '../ui/button'
   
 
 const MobileNav = () => {
@@ -25,6 +24,7 @@ const MobileNav = () => {
             alt="logo"
             width={180}
             height={28}
+            priority // if needed
             ></Image>
         </Link>
 
@@ -47,6 +47,7 @@ const MobileNav = () => {
             alt="logo"
             width={152}
             height={23}
+            priority // if needed
             ></Image>
 
         <ul className='header-nav-elements'>
@@ -58,6 +59,7 @@ const MobileNav = () => {
                     <Image src={link.icon} alt='logo'
                       height={20}
                       width={20}
+                      priority // if needed
                       className={`${pathname==link.route && ''}`}/>
                       {link.label}
                     </Link>
