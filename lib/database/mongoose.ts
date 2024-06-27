@@ -28,4 +28,4 @@ async function connectToDatabase(): Promise<void> {
   }
 }
 
-export default dbConnect;
+export default connectToDatabase;
