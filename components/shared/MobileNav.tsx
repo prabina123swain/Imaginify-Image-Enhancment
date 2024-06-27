@@ -7,9 +7,10 @@ import {
   } from "@/components/ui/sheet"
 import Link from 'next/link'
 import Image from 'next/image'
-import { SignOutButton, SignedIn , UserButton } from '@clerk/nextjs'
+import { SignOutButton, SignedIn , SignedOut, UserButton } from '@clerk/nextjs'
 import { navLinks } from '@/constants'
 import { usePathname } from 'next/navigation'
+import { Button } from '../ui/button'
   
 
 const MobileNav = () => {
@@ -67,16 +68,16 @@ const MobileNav = () => {
                 )
               })
             }
-
-          <li className=' cursor-pointer gap-2 p-4 flex'>
-              <SignOutButton>
-                 <UserButton showName/>
-              </SignOutButton>
-            </li>
           </ul>
         </SheetContent>
        </Sheet>
      </SignedIn>  
+
+         <SignedOut>
+            <Button asChild className="button bg-purple-gradient bg-cover">
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </SignedOut>
     
         </nav>
     </header>

@@ -20,12 +20,10 @@ export const connectToDatabase = async () => {
   if (cached.conn) return cached.conn;
 
   if (!MONGODB_URL) throw new Error('Missing MONGODB_URL');
-
+  console.log("connecting to db...");
   cached.promise = cached.promise || mongoose.connect(MONGODB_URL, { 
     dbName: 'imaginify', 
     bufferCommands: false,
-    serverSelectionTimeoutMS: 5000, // Increase timeout
-    socketTimeoutMS: 45000,
   })
   .then((mongooseInstance) => {
     console.log("Database connected successfully");
