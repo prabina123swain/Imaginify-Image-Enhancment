@@ -79,7 +79,7 @@ export async function POST(req: Request) {
         },
       });
     }
-
+    console.log("created user ",newUser);
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
     };
 
     const updatedUser = await updateUser(id, user);
-
+    console.log("updated user ",updateUser);
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
 
@@ -104,6 +104,7 @@ export async function POST(req: Request) {
     const { id } = evt.data;
 
     const deletedUser = await deleteUser(id!);
+    console.log("deleted user ",deleteUser);
 
     return NextResponse.json({ message: "OK", user: deletedUser });
   }
