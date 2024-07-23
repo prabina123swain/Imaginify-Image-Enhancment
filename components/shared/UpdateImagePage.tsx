@@ -13,7 +13,7 @@ interface User {
 }
 
 interface UpdateImagePageProps {
-  userId: string;
+  userId: string | any;
   id: string;
 }
 
