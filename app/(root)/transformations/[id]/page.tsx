@@ -10,6 +10,7 @@ import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 import TransformedImage from "@/components/shared/TransoformedImage";
+import Spinner from "@/components/shared/Spinner";
 
 export interface IImage extends Document {
   title: string;
@@ -60,7 +61,7 @@ const ImageDetails = ({ params: { id } } :SearchParamProps ) => {
 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner/>
   }
 
   if (!image) {

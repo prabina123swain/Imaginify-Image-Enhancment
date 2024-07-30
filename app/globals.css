@@ -374,3 +374,38 @@
   font-weight: 600;
   color: #384262;
 }
+
+/* spinner css  */
+
+@keyframes tlbr {
+  0% { transform: rotate(0); }
+  20% { transform: rotate(90deg); }
+  40% { transform: rotate(90deg); }
+  60% { transform: rotate(0); }
+}
+
+@keyframes trbl {
+  20% { transform: rotate(0); }
+  40% { transform: rotate(90deg); }
+  60% { transform: rotate(90deg); }
+  80% { transform: rotate(0); }
+}
+
+@keyframes opposites {
+  80% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@layer utilities {
+  .animate-tlbr {
+    animation: tlbr 2.5s ease-out infinite;
+  }
+
+  .animate-trbl {
+    animation: trbl 2.5s ease-out infinite;
+  }
+
+  .animate-opposites {
+    animation: opposites 2.5s ease-out infinite;
+  }
+}

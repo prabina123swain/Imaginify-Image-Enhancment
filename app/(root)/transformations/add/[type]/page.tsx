@@ -6,6 +6,7 @@ import { transformationTypes } from '@/constants'
 import { getUserById } from '@/lib/actions/user.actions';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from "react";
+import Spinner from "@/components/shared/Spinner";
 
 interface User {
   _id: string;
@@ -17,14 +18,16 @@ const AddTransformationTypePage = ({ params: { type } }: SearchParamProps) => {
   const [user,setUser]=useState<User |null> (null);
   const { userId } = useAuth();
 
+  if (!userId) {
+    redirect('/sign-in');
+  } 
+
   useEffect(() => {
     const fetchUser = async () => {
-      if (!userId) {
-        redirect('/sign-in');
-      } else {
+      console.log("user id",userId);
+     
         const fetchedUser = await getUserById(userId);
         setUser(fetchedUser);
-      }
     };
 
     fetchUser();
@@ -40,11 +43,11 @@ const AddTransformationTypePage = ({ params: { type } }: SearchParamProps) => {
         title={transformation.title} 
         subtitle={transformation.subTitle} />
         
-      <section className="mt-10">
+      <section className="mt-10 ">
        {
         !user ?
           (
-           <div className="w-full h-full flex justify-center items-center">Loading...</div>
+            <Spinner/>
           ):(
             <TransformationForm
             action='Add'

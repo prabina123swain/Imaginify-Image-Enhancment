@@ -3,9 +3,8 @@ import Image from "next/image";
 import Header from "@/components/shared/Header";
 import { getUserById } from "@/lib/actions/user.actions";
 import { getUserImages } from "@/lib/actions/image.actions"; // Importing the necessary function
-import { User } from "@clerk/nextjs/server";
-import { IImage } from "@/app/(root)/transformations/[id]/page";
 import { Collection } from "./Collection";
+import Spinner from "./Spinner";
 
 interface ProfileProps {
   userId: string;
@@ -37,7 +36,7 @@ const ProfilePage = ({ userId, page }: ProfileProps) => {
   }, [userId, page]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner/>
   }
 
   if (!user) {
@@ -50,7 +49,7 @@ const ProfilePage = ({ userId, page }: ProfileProps) => {
 
       <section className="profile">
         <div className="profile-balance">
-          <p className="p-14-medium md:p-16-medium">CREDITS AVAILABLE</p>
+          <p className="p-14-medium md:p-16-medium">REWARDS AVAILABLE</p>
           <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/coins.svg"
@@ -59,7 +58,7 @@ const ProfilePage = ({ userId, page }: ProfileProps) => {
               height={50}
               className="size-9 md:size-12"
             />
-            <h2 className="h2-bold text-dark-600">{user.creditBalance}</h2>
+            <h2 className="h2-bold text-dark-600">{images.data.length/5}</h2>
           </div>
         </div>
 

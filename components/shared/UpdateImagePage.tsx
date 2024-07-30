@@ -6,6 +6,7 @@ import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";
 import { useEffect, useState } from "react";
 import { IImage } from "@/lib/models/image.model";
+import Spinner from "./Spinner";
 
 interface User {
   _id: string;
@@ -21,15 +22,15 @@ const UpdateImagePage = ({ userId, id }: UpdateImagePageProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [image, setImage] = useState<IImage | null>(null);
   const [loading, setLoading] = useState(true);
+   
+  if (!userId) {
+    redirect("/sign-in");
+  } 
 
   useEffect(() => {
     const fetchUser = async () => {
-      if (!userId) {
-        redirect("/sign-in");
-      } else {
         const fetchedUser = await getUserById(userId);
         setUser(fetchedUser);
-      }
     };
 
     fetchUser();
@@ -54,11 +55,11 @@ const UpdateImagePage = ({ userId, id }: UpdateImagePageProps) => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Spinner/>
   }
 
   if (!image || !user) {
-    return <div>Image/USer not found.</div>;
+    return <div className="h-full min-h-40">Image/USer not found.</div>;
   }
 
   const transformation =
